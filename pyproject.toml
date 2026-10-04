@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "screenshot-ocr-local"
+version = "0.1.0"
+description = "Local screenshot clipboard OCR with SQLite history"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "rapidocr>=3.9,<4",
+  "onnxruntime>=1.18,<2",
+  "Pillow>=11,<14",
+  "pyperclip>=1.9,<2",
+  "desktop-notifier>=6,<7",
+  "platformdirs>=4,<5",
+  "psutil>=6,<9",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+shotocr = "shotocr.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shotocr"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
